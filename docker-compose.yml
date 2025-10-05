@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:13
+    container_name: agritrace_db
+    environment:
+      POSTGRES_DB: agritrace
+      POSTGRES_USER: agritrace_user
+      POSTGRES_PASSWORD: agritrace_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - agritrace_network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: agritrace_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - agritrace_network
+
+  # Django Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: agritrace_backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://agritrace_user:agritrace_password@db:5432/agritrace
+      - REDIS_URL=redis://redis:6379/0
+      - DEBUG=True
+    depends_on:
+      - db
+      - redis
+    networks:
+      - agritrace_network
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: agritrace_frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000/api
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    networks:
+      - agritrace_network
+
+  # IPFS Node (for distributed file storage)
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    container_name: agritrace_ipfs
+    ports:
+      - "4001:4001"
+      - "5001:5001"
+      - "8080:8080"
+    volumes:
+      - ipfs_data:/data/ipfs
+    networks:
+      - agritrace_network
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+  ipfs_data:
+
+networks:
+  agritrace_network:
+    driver: bridge

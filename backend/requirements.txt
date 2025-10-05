@@ -1,0 +1,82 @@
+# Django Core
+Django==4.2.7
+djangorestframework==3.14.0
+django-cors-headers==4.3.1
+django-environ==0.11.2
+
+# Database
+psycopg2-binary==2.9.9
+dj-database-url==2.1.0
+
+# Authentication & Security
+djangorestframework-simplejwt==5.3.0
+django-allauth==0.57.0
+cryptography==41.0.7
+
+# Caching
+redis==5.0.1
+django-redis==5.4.0
+
+# Blockchain
+web3==6.11.3
+eth-account==0.10.0
+eth-utils==2.3.1
+
+# IPFS Integration
+ipfshttpclient==0.8.0a2
+
+# API Documentation
+drf-yasg==1.21.7
+drf-spectacular==0.26.5
+
+# SMS/USSD Integration
+africastalking==1.2.6
+
+# QR Code Generation
+qrcode[pil]==7.4.2
+Pillow==10.1.0
+
+# Geolocation
+geopy==2.4.1
+
+# Data Validation
+marshmallow==3.20.1
+django-filter==23.5
+
+# Monitoring & Logging
+sentry-sdk==1.38.0
+django-debug-toolbar==4.2.0
+
+# Task Queue
+celery==5.3.4
+django-celery-beat==2.5.0
+django-celery-results==2.5.1
+
+# Testing
+pytest==7.4.3
+pytest-django==4.7.0
+pytest-cov==4.1.0
+factory-boy==3.3.0
+faker==20.1.0
+
+# Code Quality
+black==23.12.0
+flake8==6.1.0
+isort==5.13.2
+pylint==3.0.3
+
+# Utilities
+python-dotenv==1.0.0
+requests==2.31.0
+python-dateutil==2.8.2
+pytz==2023.3.post1
+
+# Excel/CSV Export
+openpyxl==3.1.2
+pandas==2.1.4
+
+# Image Processing
+opencv-python-headless==4.8.1.78
+
+# Internationalization
+polib==1.2.0
