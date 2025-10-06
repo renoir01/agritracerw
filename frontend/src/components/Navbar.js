@@ -252,8 +252,8 @@ const Navbar = () => {
         .navbar {
           background: var(--primary-color);
           color: white;
-          padding: 1rem 0;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          padding: 0.75rem 0;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.15);
           position: sticky;
           top: 0;
           z-index: 1000;
@@ -265,6 +265,7 @@ const Navbar = () => {
           align-items: center;
           flex-wrap: wrap;
           gap: 1rem;
+          padding: 0 20px;
         }
 
         .navbar-brand {
@@ -275,6 +276,11 @@ const Navbar = () => {
           display: flex;
           align-items: center;
           gap: 0.5rem;
+          transition: opacity 0.3s;
+        }
+
+        .navbar-brand:hover {
+          opacity: 0.9;
         }
 
         .logo-icon {
@@ -283,8 +289,10 @@ const Navbar = () => {
 
         .navbar-links {
           display: flex;
-          gap: 1rem;
+          gap: 0.5rem;
           align-items: center;
+          flex: 1;
+          justify-content: center;
         }
 
         .nav-link {
@@ -292,53 +300,85 @@ const Navbar = () => {
           text-decoration: none;
           padding: 0.5rem 1rem;
           border-radius: 4px;
-          transition: background 0.3s;
+          transition: all 0.3s ease;
           white-space: nowrap;
+          font-weight: 500;
         }
 
         .nav-link:hover {
-          background: rgba(255,255,255,0.1);
+          background: rgba(255,255,255,0.15);
+          transform: translateY(-1px);
         }
 
         .navbar-actions {
           display: flex;
-          gap: 0.5rem;
+          gap: 0.75rem;
           align-items: center;
         }
 
         .user-menu {
           display: flex;
-          gap: 0.5rem;
+          gap: 0.75rem;
           align-items: center;
         }
 
         .user-greeting {
           margin-right: 0.5rem;
+          font-weight: 500;
+          color: rgba(255,255,255,0.95);
         }
 
         .btn-sm {
-          padding: 0.4rem 1rem;
+          padding: 0.5rem 1.25rem;
           font-size: 0.9rem;
+          font-weight: 600;
+          border-radius: 6px;
+          transition: all 0.3s ease;
+          text-decoration: none;
+          display: inline-block;
         }
 
         .btn-outline {
           background: transparent;
-          border: 1px solid white;
+          border: 2px solid white;
           color: white;
         }
 
         .btn-outline:hover {
           background: white;
           color: var(--primary-color);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+          background: var(--secondary-color);
+          border: 2px solid var(--secondary-color);
+          color: white;
+        }
+
+        .btn-secondary:hover {
+          background: var(--secondary-dark);
+          border-color: var(--secondary-dark);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .mobile-menu-btn {
           display: none;
-          background: none;
-          border: none;
+          background: rgba(255,255,255,0.1);
+          border: 2px solid white;
+          border-radius: 6px;
           color: white;
           font-size: 1.5rem;
           cursor: pointer;
+          padding: 0.5rem 0.75rem;
+          transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+          background: rgba(255,255,255,0.2);
+          transform: scale(1.05);
         }
 
         .mobile-menu {
@@ -347,6 +387,17 @@ const Navbar = () => {
 
         .desktop-menu {
           display: flex;
+        }
+
+        @media (max-width: 1024px) {
+          .navbar-links {
+            gap: 0.25rem;
+          }
+          
+          .nav-link {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.9rem;
+          }
         }
 
         @media (max-width: 768px) {
@@ -363,20 +414,25 @@ const Navbar = () => {
             flex-direction: column;
             padding: 1rem 0;
             margin-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 2px solid rgba(255,255,255,0.2);
+            width: 100%;
           }
 
           .mobile-nav-link {
             color: white;
             text-decoration: none;
-            padding: 0.75rem 0;
+            padding: 0.75rem 1rem;
             border: none;
             background: none;
             cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
           }
 
           .mobile-nav-link:hover {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
+            transform: translateX(5px);
           }
         }
       `}</style>
