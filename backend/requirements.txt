@@ -80,3 +80,7 @@ opencv-python-headless==4.8.1.78
 
 # Internationalization
 polib==1.2.0
+
+# Production Server
+gunicorn==21.2.0
+whitenoise==6.6.0
